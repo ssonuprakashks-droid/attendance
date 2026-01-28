@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attendance Tracker - Home</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        nav {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        nav .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav h1 {
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        nav .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+
+        nav a:hover {
+            opacity: 0.8;
+        }
+
+        .logout-btn {
+            background: white;
+            color: #667eea;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: transform 0.2s;
+            text-decoration: none;
+        }
+
+        .logout-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 100px 20px;
+            text-align: center;
+        }
+
+        .hero .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h2 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            animation: fadeInDown 0.8s ease;
+        }
+
+        .hero p {
+            font-size: 18px;
+            margin-bottom: 30px;
+            opacity: 0.9;
+            animation: fadeInUp 0.8s ease 0.2s backwards;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 0.8s ease 0.4s backwards;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: white;
+            color: #667eea;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            color: #667eea;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 60px 20px;
+            background-color: #f9f9f9;
+        }
+
+        .features .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 50px;
+            color: #333;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(102, 126, 234, 0.2);
+        }
+
+        .feature-icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+
+        .feature-card h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: #667eea;
+        }
+
+        .feature-card p {
+            color: #666;
+            font-size: 14px;
+        }
+
+        /* Benefits Section */
+        .benefits {
+            padding: 60px 20px;
+        }
+
+        .benefits .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+        }
+
+        .benefit-item {
+            display: flex;
+            gap: 20px;
+        }
+
+        .benefit-number {
+            font-size: 32px;
+            font-weight: bold;
+            color: #667eea;
+            min-width: 50px;
+        }
+
+        .benefit-content h4 {
+            color: #333;
+            margin-bottom: 8px;
+        }
+
+        .benefit-content p {
+            color: #666;
+            font-size: 14px;
+        }
+
+        /* Call to Action Section */
+        .cta-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .cta-section .container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .cta-section h2 {
+            font-size: 32px;
+            margin-bottom: 15px;
+        }
+
+        .cta-section p {
+            font-size: 16px;
+            margin-bottom: 25px;
+            opacity: 0.9;
+        }
+
+        /* Footer */
+        footer {
+            background: #222;
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+        }
+
+        footer p {
+            margin: 0;
+            color: #999;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h2 {
+                font-size: 32px;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+
+            .section-title {
+                font-size: 28px;
+            }
+
+            nav .nav-links {
+                gap: 15px;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <h1>📋 Attendance Tracker</h1>
+            <ul class="nav-links">
+                <li><a href="#features">Features</a></li>
+                <li><a href="#benefits">Benefits</a></li>
+                <li><a href="/logout" class="logout-btn">Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h2>Welcome to Attendance Tracker</h2>
+            <p>Simplify attendance management with our powerful and easy-to-use tracking system</p>
+            <div class="cta-buttons">
+                <button class="btn btn-primary" onclick="scrollToSection('features')">Explore Features</button>
+                <button class="btn btn-secondary" onclick="document.location='#'">View Dashboard</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <h2 class="section-title">Key Features</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">✅</div>
+                    <h3>Easy Check-in</h3>
+                    <p>Quick and simple attendance marking with just one click</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Real-time Reports</h3>
+                    <p>Generate detailed attendance reports instantly</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">👥</div>
+                    <h3>User Management</h3>
+                    <p>Manage multiple users and roles efficiently</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📱</div>
+                    <h3>Mobile Friendly</h3>
+                    <p>Access from any device, anywhere, anytime</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <h3>Secure</h3>
+                    <p>Your data is protected with advanced security measures</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Fast Performance</h3>
+                    <p>Lightning-fast loading and real-time updates</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="benefits" id="benefits">
+        <div class="container">
+            <h2 class="section-title">Why Choose Us?</h2>
+            <div class="benefits-grid">
+                <div class="benefit-item">
+                    <div class="benefit-number">1</div>
+                    <div class="benefit-content">
+                        <h4>Save Time</h4>
+                        <p>Automated attendance tracking saves hours of manual work</p>
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-number">2</div>
+                    <div class="benefit-content">
+                        <h4>Reduce Errors</h4>
+                        <p>Minimize human error with digital record keeping</p>
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-number">3</div>
+                    <div class="benefit-content">
+                        <h4>Easy Analytics</h4>
+                        <p>Get insights with comprehensive attendance analytics</p>
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-number">4</div>
+                    <div class="benefit-content">
+                        <h4>Better Compliance</h4>
+                        <p>Maintain detailed records for compliance requirements</p>
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-number">5</div>
+                    <div class="benefit-content">
+                        <h4>Cost Effective</h4>
+                        <p>Reduce operational costs with automation</p>
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-number">6</div>
+                    <div class="benefit-content">
+                        <h4>Scalable</h4>
+                        <p>Grow your system as your organization expands</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Ready to Get Started?</h2>
+            <p>Join hundreds of organizations using our attendance tracker</p>
+            <button class="btn btn-primary" onclick="document.location='#'">Start Tracking Now</button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Attendance Tracker. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function scrollToSection(id) {
+            const element = document.getElementById(id);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+    </script>
+</body>
+</html>
